@@ -1,3 +1,4 @@
+from turtle import screensize
 from typing import Tuple
 import pygame as pg
 from pygame.locals import *
@@ -108,7 +109,11 @@ class Button(object):
         self.hover = (color[0] + 20, color[1] + 20, color[2] + 20)
         self.color = self.unhover
 
-        self.text = self.font.render(text, True, (0, 0, 0))
+        self.content = text
+        if len(text) > 45:
+            self.text = self.font.render(text[:45] + '...', True, (0, 0, 0))
+        else:
+            self.text = self.font.render(text, True, (0, 0, 0))
         self.text_rect = self.text.get_rect()
         self.text_rect.center = self.rect.center
 
@@ -130,6 +135,7 @@ class Button(object):
             if event.button == 1:
                 if self.rect.collidepoint(event.pos):
                     self.clicked = True
+                    return True
 
     def is_hover(self, event):
         if event.type == pg.MOUSEMOTION:
@@ -137,3 +143,26 @@ class Button(object):
                 self.color = self.hover
             else:
                 self.color = self.unhover
+
+
+class Button_table:
+    def __init__(self, l1, l2) -> None:
+        self.buttons = []
+        y = 100
+        for i in l1:
+            self.buttons.append(Button((180, 180, 180), 25, y, 450, 30, i))
+            y += 50
+        y = 100
+        for i in l2:
+            self.buttons.append(Button((180, 180, 180), 525, y, 450, 30, i))
+            y += 50
+
+        self.picked = ''
+
+    def draw(self, screen):
+        for i in self.buttons:
+            i.draw(screen)
+
+    def is_hover(self, event):
+        for i in self.buttons:
+            i.is_hover(event)
