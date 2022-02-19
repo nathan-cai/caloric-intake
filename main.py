@@ -10,9 +10,9 @@ from sys import exit
 def main():
     g = Game()
     clock = pg.time.Clock()
-    button1 = Button((180, 180, 180), 730, 175, 70, 35, 'Submit')
-    input_box = InputBox((180, 180, 180), 100, 175, 600, 35)
-    back_button = Button((180, 180, 180), 730, 175, 70, 35, 'back')
+    button1 = Button((180, 180, 180), 430, 215, 140, 35, 'Submit')
+    input_box = InputBox((180, 180, 180), 200, 175, 600, 35)
+    back_button = Button((180, 180, 180), 430, 215, 140, 35, 'back')
 
     while True:
         clock.tick(60)
