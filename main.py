@@ -1,4 +1,5 @@
 from classes import Game, InputBox, Button
+from Website_request import Calories
 import pygame as pg
 from pygame.locals import *
 import sys
