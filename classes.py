@@ -158,6 +158,7 @@ class Button_table:
             y += 50
 
         self.picked = ''
+        self.clicked = False
 
     def draw(self, screen):
         for i in self.buttons:
@@ -166,3 +167,9 @@ class Button_table:
     def is_hover(self, event):
         for i in self.buttons:
             i.is_hover(event)
+
+    def is_clicked(self, event):
+        for i in self.buttons:
+            if i.is_clicked(event):
+                self.picked = i.content
+                self.clicked = True
