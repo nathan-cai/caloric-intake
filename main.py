@@ -1,5 +1,4 @@
-from button import Button
-from typing import Tuple
+from classes import Game, InputBox, Button
 import pygame as pg
 from pygame.locals import *
 import sys
@@ -8,45 +7,40 @@ import random
 from sys import exit
 
 
-class Game:
-
-    def __init__(self):
-        self.w = 1000
-        self.h = 600
-        self.icon = pg.image.load('logo.png')
-        self.white = (255, 255, 255)
-        self.background = pg.image.load('background.jpg')
-        self.background = pg.transform.scale(self.background, (1000, 600))
-
-        # stat an instance of pygame
-        pg.init()
-        pg.font.init()
-
-        # create the screen
-        self.screen = pg.display.set_mode((self.w, self.h))
-
-        #title and icon
-        pg.display.set_caption('Caloric Intake Tracker')
-        pg.display.set_icon(self.icon)
-
-    def screen_setup(self):
-        self.screen.fill(self.white)
-        self.screen.blit(self.background, (0, 0))
-
-
 def main():
     g = Game()
     clock = pg.time.Clock()
-    button1 = Button((5, 5), (100, 100), (180, 180, 180), "Submit")
+    button1 = Button((180, 180, 180), 730, 175, 70, 35, 'Submit')
+    input_box = InputBox((180, 180, 180), 100, 175, 600, 35)
+    back_button = Button((180, 180, 180), 730, 175, 70, 35, 'back')
 
     while True:
         clock.tick(60)
         g.screen_setup()
-        for event in pg.event.get():
-            if event.type == pg.QUIT:
-                pg.quit()
-                exit()
-        button1.draw(g.screen)
+        # screen 1
+        if not button1.clicked and not input_box.submitted:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    exit()
+                input_box.handle_event(event)
+                button1.submit(event, input_box)
+                button1.is_hover(event)
+            button1.draw(g.screen)
+            input_box.draw(g.screen)
+        # screen 2
+        else:
+            for event in pg.event.get():
+                if event.type == pg.QUIT:
+                    pg.quit()
+                    exit()
+                back_button.is_clicked(event)
+                back_button.is_hover(event)
+            if back_button.clicked:
+                button1.clicked = False
+                input_box.submitted = False
+                back_button.clicked = False
+            back_button.draw(g.screen)
         pg.display.update()
 
 
