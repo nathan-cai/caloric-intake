@@ -1,13 +1,6 @@
-from tkinter import E
-from typing import final
-
-from numpy import add
 from classes import Game, InputBox, Button, Button_table, Calories, csv_help
 import pygame as pg
 from pygame.locals import *
-import sys
-import time
-import random
 from sys import exit
 import re
 

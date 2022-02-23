@@ -1,4 +1,3 @@
-from turtle import screensize
 from typing import List, Tuple
 import pygame as pg
 from pygame.locals import *
