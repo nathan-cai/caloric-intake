@@ -25,7 +25,7 @@ pip install pandas
 
 run main.py in an IDE or in a terminal
 
-![](caloric-intake-screenshot.jpeg)
+![plot](caloric-intake-screenshot.jpg)
 
 ![](Caloric-intake-gif.gif)
 
