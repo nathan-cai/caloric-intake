@@ -21,6 +21,11 @@ pip install requests
 ```bash
 pip install pandas
 ```
+
+Request an API key from https://fdc.nal.usda.gov/api-key-signup.html
+
+Add the API Key to lines 200 and 203 in Classes.py
+
 ## Usage
 
 run main.py in an IDE or in a terminal
