@@ -191,15 +191,16 @@ class Button_table:
 
 class Calories:
     """class for getting the calories of foods"""
-
+    
+    #TODO request API ket from https://fdc.nal.usda.gov/api-key-signup.html
     def __init__(self, term: str) -> None:
         self.term = term.replace(' ', '$')
         self.r1 = requests.get(f'https://api.nal.usda.gov/fdc/v1/foods/search?query={self.term}'
                                '&pageSize=5&dataType=Foundation&api_key'
-                               '=gJ0zg0CnvJdsOTWkWjW2CB6d0Q1IrphBTi33VwSU')
+                               '={YOUR API KEY GOES HERE}')
         self.r2 = requests.get(f'https://api.nal.usda.gov/fdc/v1/foods/search?query={self.term}'
                                '&pageSize=5&dataType=SR%20Legacy&api_key'
-                               '=gJ0zg0CnvJdsOTWkWjW2CB6d0Q1IrphBTi33VwSU')
+                               '={YOUR API KEY GOES HERE}')
         self.json1 = self.r1.json()
         self.json2 = self.r2.json()
 
